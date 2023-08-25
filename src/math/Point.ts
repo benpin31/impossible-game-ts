@@ -1,6 +1,8 @@
+import { truncateToNDec } from './utils';
+
 export class Point {
-   x: number;
-   y: number;
+   public x: number;
+   public y: number;
 
    constructor(x: number, y: number) {
       this.x = x;
@@ -23,7 +25,15 @@ export class Point {
       return point1.hasSameAbscissa(point2) && point1.hasSameOrdinate(point2);
    }
 
-   static translate(point1: Point, point2: Point) {
-      return new Point(point1.x + point2.x, point1.y + point2.y);
+   copyTranslate(point: Point): Point {
+      return new Point(
+         truncateToNDec(this.x + point.x),
+         truncateToNDec(this.y + point.y)
+      );
+   }
+
+   translate(point: Point): void {
+      this.x = truncateToNDec(this.x + point.x);
+      this.y = truncateToNDec(this.y + point.y);
    }
 }
