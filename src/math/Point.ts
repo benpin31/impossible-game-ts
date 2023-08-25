@@ -1,3 +1,4 @@
+import { Vector } from './Vector';
 import { truncateToNDec } from './utils';
 
 export class Point {
@@ -25,15 +26,15 @@ export class Point {
       return point1.hasSameAbscissa(point2) && point1.hasSameOrdinate(point2);
    }
 
-   copyTranslate(point: Point): Point {
+   copyTranslate(vector: Vector): Point {
       return new Point(
-         truncateToNDec(this.x + point.x),
-         truncateToNDec(this.y + point.y)
+         truncateToNDec(this.x + vector.x),
+         truncateToNDec(this.y + vector.y)
       );
    }
 
-   translate(point: Point): void {
-      this.x = truncateToNDec(this.x + point.x);
-      this.y = truncateToNDec(this.y + point.y);
+   translate(vector: Vector): void {
+      this.x = truncateToNDec(this.x + vector.x);
+      this.y = truncateToNDec(this.y + vector.y);
    }
 }
